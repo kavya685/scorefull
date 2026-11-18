@@ -1,4 +1,13 @@
 package com.scorefull.academic.course;
 
-public record CourseRequest(String name, Long universityId) {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public record CourseRequest(
+
+        @NotBlank(message = "Course name is required")
+        String name,
+
+        @NotNull(message = "University is required")
+        Long universityId) {
 }

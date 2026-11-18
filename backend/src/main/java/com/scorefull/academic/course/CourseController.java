@@ -3,6 +3,8 @@ package com.scorefull.academic.course;
 import java.util.List;
 
 import com.scorefull.academic.university.University;
+import com.scorefull.academic.university.UniversityRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +29,7 @@ public class CourseController {
     }
 
     @PostMapping
-    public Course add(@RequestBody CourseRequest request) {
+    public Course add(@Valid @RequestBody CourseRequest request) {
         University university = universityRepository.findById(request.universityId())
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "University not found"));

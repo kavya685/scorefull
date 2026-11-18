@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.scorefull.academic.course.Course;
 import com.scorefull.academic.course.CourseRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ public class SubjectController {
     }
 
     @PostMapping
-    public Subject add(@RequestBody SubjectRequest request) {
+    public Subject add(@Valid @RequestBody SubjectRequest request) {
         Course course = courseRepository.findById(request.courseId())
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Course not found"));
